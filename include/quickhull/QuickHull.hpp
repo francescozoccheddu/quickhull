@@ -11,6 +11,7 @@
 #include "ConvexHull.hpp"
 #include "HalfEdgeMesh.hpp"
 #include "MathUtils.hpp"
+#include <type_traits>
 
 /*
  * Implementation of the 3D QuickHull algorithm by Antti Kuukka
@@ -50,14 +51,14 @@
 
 namespace quickhull {
 	
+	template<typename FloatType>
+	constexpr FloatType defaultEps{ static_cast<FloatType>(std::is_same_v<double, FloatType> ? 0.0000001 : 0.0001) };
+
 	struct DiagnosticsData {
 		size_t m_failedHorizonEdges; // How many times QuickHull failed to solve the horizon edge. Failures lead to degenerated convex hulls.
 		
 		DiagnosticsData() : m_failedHorizonEdges(0) { }
 	};
-
-	template<typename FloatType>
-	FloatType defaultEps();
 
 	template<typename FloatType>
 	class QuickHull {
@@ -127,7 +128,7 @@ namespace quickhull {
 		ConvexHull<FloatType> getConvexHull(const std::vector<Vector3<FloatType>>& pointCloud,
 											bool CCW,
 											bool useOriginalIndices,
-											FloatType eps = defaultEps<FloatType>());
+											FloatType eps = defaultEps<FloatType>);
 		
 		// Computes convex hull for a given point cloud.
 		// Params:
@@ -141,7 +142,7 @@ namespace quickhull {
 											size_t vertexCount,
 											bool CCW,
 											bool useOriginalIndices,
-											FloatType eps = defaultEps<FloatType>());
+											FloatType eps = defaultEps<FloatType>);
 		
 		// Computes convex hull for a given point cloud. This function assumes that the vertex data resides in memory
 		// in the following format: x_0,y_0,z_0,x_1,y_1,z_1,...
@@ -156,7 +157,7 @@ namespace quickhull {
 											size_t vertexCount,
 											bool CCW,
 											bool useOriginalIndices,
-											FloatType eps = defaultEps<FloatType>());
+											FloatType eps = defaultEps<FloatType>);
 		
 		// Computes convex hull for a given point cloud. This function assumes that the vertex data resides in memory
 		// in the following format: x_0,y_0,z_0,x_1,y_1,z_1,...
@@ -170,7 +171,7 @@ namespace quickhull {
 		HalfEdgeMesh<FloatType, size_t> getConvexHullAsMesh(const FloatType* vertexData,
 															size_t vertexCount,
 															bool CCW,
-															FloatType eps = defaultEps<FloatType>());
+															FloatType eps = defaultEps<FloatType>);
 		
 		// Get diagnostics about last generated convex hull
 		const DiagnosticsData& getDiagnostics() {

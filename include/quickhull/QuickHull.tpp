@@ -9,16 +9,6 @@
 
 namespace quickhull {
 
-	template<>
-	float defaultEps() { 
-		return 0.0001f;
-	}
-	
-	template<>
-	double defaultEps() {
-		return 0.0000001; 
-	}
-	
 	/*
 	 * Implementation of the algorithm
 	 */
