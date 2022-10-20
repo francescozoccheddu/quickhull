@@ -1,5 +1,5 @@
-#include "../QuickHull.hpp"
-#include "../MathUtils.hpp"
+#include <quickhull/QuickHull.hpp>
+#include <quickhull/MathUtils.hpp>
 #include <iostream>
 #include <random>
 #include <cassert>

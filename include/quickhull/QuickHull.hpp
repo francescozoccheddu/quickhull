@@ -219,5 +219,6 @@ namespace quickhull {
 
 }
 
+#include "QuickHull.tpp"
 
 #endif /* QUICKHULL_HPP_ */

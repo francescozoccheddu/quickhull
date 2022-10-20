@@ -1,11 +1,8 @@
-cmake_minimum_required(VERSION 3.11)
-project(QuickHullTests)
+cmake_minimum_required (VERSION 3.8)
 
-set(SOURCE_FILES
-  ${CMAKE_SOURCE_DIR}/QuickHullTests.cpp
-  ${CMAKE_SOURCE_DIR}/main.cpp
-  ${CMAKE_SOURCE_DIR}/../QuickHull.cpp
-  )
-
-add_definitions(-std=c++11)
-add_executable(QuickHullTests ${SOURCE_FILES})
+add_executable (quickhull-tests 
+	"QuickHullTests.cpp"
+	"main.cpp"
+)
+set_property (TARGET quickhull-tests PROPERTY CXX_STANDARD 11)
+target_link_libraries (quickhull-tests PUBLIC quickhull)

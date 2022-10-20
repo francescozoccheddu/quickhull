@@ -6,7 +6,7 @@ C++11 is needed to compile it.
 
 Basic usage:
 
-	#include "quickhull/quickhull.hpp"
+	#include "quickhull/QuickHull.hpp"
 
 	using namespace quickhull;
 	QuickHull<float> qh; // Could be double as well
